@@ -37,10 +37,17 @@ void Game::initialize()
 {
 	isRunning = true;
 
+	//set colour of colour buffer
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	//set current matrix mode in matrix stack. It stores different transformations.
+	//Different types of transformatin matrices include modelview, projection and texture matrices
 	glMatrixMode(GL_PROJECTION);
+	//replace current matrix with identity matrix. Matrices are used to perform various
+	// transformations like translation, rotation, scaling, position
 	glLoadIdentity();
+	//gluPerspective is used to set up a perspective projection matrix for a 3D scene
 	gluPerspective(45.0, window.getSize().x / window.getSize().y, 1.0, 500.0);
+	//Setting another matrix mode. Three main modes-> Model, View, Projection.
 	glMatrixMode(GL_MODELVIEW);
 
 	// glNewList(index, GL_COMPILE);
