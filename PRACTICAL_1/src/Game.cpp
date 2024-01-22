@@ -53,25 +53,39 @@ void Game::initialize()
 	glBegin(GL_QUADS);
 	{
 		//Front Face
-		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f(v3.getX(), 1.0f, -5.0f);
-		glVertex3f(-1.0f, 1.0f, -5.0f);
-		glVertex3f(-1.0f, -1.0f, -5.0f);
-		glVertex3f(1.0f, -1.0f, -5.0f);
+        glColor3f(0.0f, 0.0f, 1.0f);
+        glVertex3f(v3.getX(), 1.0f, -5.0f);
+        glVertex3f(-1.0f, 1.0f, -5.0f);
+        glVertex3f(-1.0f, -1.0f, -5.0f);
+        glVertex3f(1.0f, -1.0f, -5.0f);
 
-		//Back Face
-		glColor3f(0.0f, 1.0f, 0.0f);
-		glVertex3f(1.0f, 1.0f, -15.0f);
-		glVertex3f(-1.0f, 1.0f, -15.0f);
-		glVertex3f(-1.0f, -1.0f, -15.0f);
-		glVertex3f(1.0f, -1.0f, -15.0f);
+        //Back Face
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glVertex3f(1.0f, 1.0f, -15.0f);
+        glVertex3f(-1.0f, 1.0f, -15.0f);
+        glVertex3f(-1.0f, -1.0f, -15.0f);
+        glVertex3f(1.0f, -1.0f, -15.0f);
 
-		//Top
-		glColor3f(1.0f, 0.0f, 1.0f);
-		glVertex3f(1.0f, 1.0f, -5.0f);
-		glVertex3f(-1.0f, -1.0f, -5.0f);
-		glVertex3f(-1.0f, -1.0f, -5.0f);
-		glVertex3f(1.0f,)
+        //Left Face
+        glColor3f(0.5f, 0.0f, 0.5f);
+        glVertex3f(-1.0f, 1.0f, -5.0f);
+        glVertex3f(-1.0f, 1.0f, -15.0f);
+        glVertex3f(-1.0f, -1.0f, -15.0f);
+        glVertex3f(-1.0f, -1.0f, -5.0f);
+
+        //Right Face
+        glColor3f(1.0f, 0.0f, 1.0f);
+        glVertex3f(v3.getX(), 1.0f, -5.0f);
+        glVertex3f(1.0f, 1.0f, -15.0f);
+        glVertex3f(1.0f, -1.0f, -15.0f);
+        glVertex3f(1.0f, -1.0f, -5.0f);
+
+        //Top Face
+        glColor3f(0.5f, 1.0f, 1.0f);
+        glVertex3f(v3.getX(), 1.0f, -5.0f);
+        glVertex3f(1.0f, 1.0f, -15.0f);
+        glVertex3f(-1.0f, 1.0f, -15.0f);
+        glVertex3f(-1.0f, 1.0f, -5.0f);
 	
 
 	}
