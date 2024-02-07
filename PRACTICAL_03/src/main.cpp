@@ -69,6 +69,10 @@ static void test() {
 	DEBUG_MSG("TODO : Complete all Math Library function tests");
 }
 
+void Initialise(){
+	isRunning = true;
+}
+
 int main()
 {
 
@@ -135,6 +139,30 @@ int main()
 					triangle[1] = q.rotate(triangle[1], -5.0f);
 					triangle[2] = q.rotate(triangle[2], -5.0f);
 					print(triangle); 
+					break;
+				case sf::Keyboard::W:
+					triangle[0] = gpp::Matrix3f::translateY(-0.1f) * triangle[0];
+					triangle[1] = gpp::Matrix3f::translateY(-0.1f) * triangle[1];
+					triangle[2] = gpp::Matrix3f::translateY(-0.1f) * triangle[2];
+					print(triangle);
+					break;
+				case sf::Keyboard::S:
+					triangle[0] = gpp::Matrix3f::translateY(-0.1f) * triangle[0];
+					triangle[1] = gpp::Matrix3f::translateY(-0.1f) * triangle[1];
+					triangle[2] = gpp::Matrix3f::translateY(-0.1f) * triangle[2];
+					print(triangle);
+					break;
+				case sf::Keyboard::A:
+					triangle[0] = gpp::Matrix3f::translateY(-0.1f) * triangle[0];
+					triangle[1] = gpp::Matrix3f::translateY(-0.1f) * triangle[1];
+					triangle[2] = gpp::Matrix3f::translateY(-0.1f) * triangle[2];
+					print(triangle);
+					break;
+				case sf::Keyboard::D:
+					triangle[0] = gpp::Matrix3f::translateY(-0.1f) * triangle[0];
+					triangle[1] = gpp::Matrix3f::translateY(-0.1f) * triangle[1];
+					triangle[2] = gpp::Matrix3f::translateY(-0.1f) * triangle[2];
+					print(triangle);
 					break;
 				}
 				break;

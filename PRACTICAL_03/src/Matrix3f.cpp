@@ -90,6 +90,38 @@ Matrix3f Matrix3f::rotateZ(const float& angle) {
 	);
 }
 
+Matrix3f Matrix3f::scale(const float& x, const float& y, const float& z) {
+	return Matrix3f(
+		x, 0.0, 0.0,
+		0.0, y, 0.0,
+		0.0, 0.0, z
+	);
+}
+
+Matrix3f Matrix3f::translateX(const float& x) {
+	return Matrix3f(
+		1.0, 0.0, x,
+		0.0, 1.0, 0.0,
+		0.0, 0.0, 1.0
+	);
+}
+
+Matrix3f Matrix3f::translateY(const float& y) {
+	return Matrix3f(
+		1.0, 0.0, 0.0,
+		0.0, 1.0, y,
+		0.0, 0.0, 1.0
+	);
+}
+
+Matrix3f Matrix3f::translateZ(const float& z) {
+	return Matrix3f(
+		1.0, 0.0, 0.0,
+		0.0, 1.0, 0.0,
+		0.0, 0.0, z
+	);
+}
+
 
 ostream& gpp::operator << (ostream& out, const Matrix3f& m) {
 	cout << "...[ Matrix ]..." << endl;
