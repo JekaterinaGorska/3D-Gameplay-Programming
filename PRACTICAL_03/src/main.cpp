@@ -70,7 +70,7 @@ static void test() {
 }
 
 void Initialise(){
-	isRunning = true;
+	//isRunning = true;
 }
 
 int main()
@@ -85,10 +85,32 @@ int main()
 	gpp::Quaternion q(0.0f, 0.0f, 0.0f, 1.0f);
 
 	// Vector3f used to draw Triangle using OpenGL
-	gpp::Vector3f triangle[3];
-	triangle[0] = gpp::Vector3f(0.0, 2.0, -5.0);
-	triangle[1] = gpp::Vector3f(-2.0, -2.0, -5.0);
-	triangle[2] = gpp::Vector3f(2.0, -2.0, -5.0);
+	gpp::Vector3f triangle[22];
+	// triangle[0] = gpp::Vector3f(0.0, 2.0, -5.0);
+	// triangle[1] = gpp::Vector3f(-2.0, -2.0, -5.0);
+	// triangle[2] = gpp::Vector3f(2.0, -2.0, -5.0);
+	triangle[0] = gpp::Vector3f(-3.0, -1.0, -25.0);
+    triangle[1] = gpp::Vector3f(-3.0, -2.0, -25.0);
+    triangle[2] = gpp::Vector3f(-1.0, -2.0, -25.0);
+    triangle[3] = gpp::Vector3f(-0.5, -2.5, -25.0);
+    triangle[4] = gpp::Vector3f(-0.5, -4.0, -25.0);
+    triangle[5] = gpp::Vector3f(-1.0, -4.0, -25.0);
+    triangle[6] = gpp::Vector3f(-1.0, -4.5, -25.0);
+    triangle[7] = gpp::Vector3f(0.0, -4.5, -25.0);
+    triangle[8] = gpp::Vector3f(0.0, -2.5, -25.0);
+    triangle[9] = gpp::Vector3f(1.5, -2.5, -25.0);
+    triangle[10] = gpp::Vector3f(1.5, -4.0, -25.0);
+    triangle[11] = gpp::Vector3f (1.0, -4.0, -25.0);
+    triangle[12] = gpp::Vector3f(1.0, -4.5, -25.0);
+    triangle[13] = gpp::Vector3f(2.0, -4.5, -25.0);
+    triangle[14] = gpp::Vector3f(2.0, -2.5, -25.0);
+    triangle[15] = gpp::Vector3f(2.5, -1.5, -25.0);
+    triangle[16] = gpp::Vector3f(2.5, -1.0, -25.0);
+    triangle[17] = gpp::Vector3f(3.0, -1.0, -25.0);
+    triangle[18] = gpp::Vector3f(3.0, -0.5, -25.0);
+	triangle[19] = gpp::Vector3f(-1.6, -0.5, -25.0);
+    triangle[20] = gpp::Vector3f(-1.9, 0.2,-25.0);
+	triangle[21] = gpp::Vector3f(-1.9,-0.5, -25.0);
 
 	// Setup SFML Window
 	sf::Window window(sf::VideoMode(800, 600), "Math Library Tests");
@@ -153,9 +175,9 @@ int main()
 					print(triangle);
 					break;
 				case sf::Keyboard::A:
-					triangle[0] = gpp::Matrix3f::translateY(-0.1f) * triangle[0];
-					triangle[1] = gpp::Matrix3f::translateY(-0.1f) * triangle[1];
-					triangle[2] = gpp::Matrix3f::translateY(-0.1f) * triangle[2];
+					triangle[0] = gpp::Matrix3f::translateY(0.1f) * triangle[0];
+					triangle[1] = gpp::Matrix3f::translateY(0.1f) * triangle[1];
+					triangle[2] = gpp::Matrix3f::translateY(0.1f) * triangle[2];
 					print(triangle);
 					break;
 				case sf::Keyboard::D:
@@ -177,6 +199,25 @@ int main()
 			glVertex3f(triangle[0].getX(), triangle[0].getY(), triangle[0].getZ());
 			glVertex3f(triangle[1].getX(), triangle[1].getY(), triangle[1].getZ());
 			glVertex3f(triangle[2].getX(), triangle[2].getY(), triangle[2].getZ());
+			glVertex3f(triangle[3].getX(), triangle[3].getY(), triangle[3].getZ());
+			glVertex3f(triangle[4].getX(), triangle[4].getY(), triangle[4].getZ());
+			glVertex3f(triangle[5].getX(), triangle[5].getY(), triangle[5].getZ());
+			glVertex3f(triangle[6].getX(), triangle[6].getY(), triangle[6].getZ());
+			glVertex3f(triangle[7].getX(), triangle[7].getY(), triangle[7].getZ());
+			glVertex3f(triangle[8].getX(), triangle[8].getY(), triangle[8].getZ());
+			glVertex3f(triangle[9].getX(), triangle[9].getY(), triangle[9].getZ());
+			glVertex3f(triangle[10].getX(), triangle[10].getY(), triangle[10].getZ());
+			glVertex3f(triangle[11].getX(), triangle[11].getY(), triangle[11].getZ());
+			glVertex3f(triangle[12].getX(), triangle[12].getY(), triangle[12].getZ());
+			glVertex3f(triangle[13].getX(), triangle[13].getY(), triangle[13].getZ());
+			glVertex3f(triangle[14].getX(), triangle[14].getY(), triangle[14].getZ());
+			glVertex3f(triangle[15].getX(), triangle[15].getY(), triangle[15].getZ());
+			glVertex3f(triangle[16].getX(), triangle[16].getY(), triangle[16].getZ());
+			glVertex3f(triangle[17].getX(), triangle[17].getY(), triangle[17].getZ());
+			glVertex3f(triangle[18].getX(), triangle[18].getY(), triangle[18].getZ());
+			glVertex3f(triangle[19].getX(), triangle[19].getY(), triangle[19].getZ());
+			glVertex3f(triangle[20].getX(), triangle[20].getY(), triangle[20].getZ());
+			glVertex3f(triangle[21].getX(), triangle[21].getY(), triangle[21].getZ());
 		}
 		glEnd();
 

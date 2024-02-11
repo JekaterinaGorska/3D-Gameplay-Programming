@@ -35,7 +35,7 @@ void Game::run()
 
 void Game::initialize()
 {
-	isRunning = true;
+	//isRunning = true;
 
 	//set colour of colour buffer
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -44,28 +44,7 @@ void Game::initialize()
 	gluPerspective(45.0, window.getSize().x / window.getSize().y, 1.0, 500.0);
 	glMatrixMode(GL_MODELVIEW);
 
-    lineStrip[0]-gpp::Vector3f(-3.0, -1.0, -25.0);
-    lineStrip[1]-gpp::Vector3f(-3.0, -2.0, -25.0);
-    lineStrip[2]-gpp::Vector3f(-1.0, -2.0, -25.0);
-    lineStrip[3]-gpp::Vector3f(-0.5, -2.5, -25.0);
-    lineStrip[4]-gpp::Vector3f(-0.5, -4.0, -25.0);
-    lineStrip[5]-gpp::Vector3f(-1.0, -4.0, -25.0);
-    lineStrip[6]-gpp::Vector3f(-1.0, -4.5, -25.0);
-    lineStrip[7]-gpp::Vector3f(0.0, -4.5, -25.0);
-    lineStrip[8]-gpp::Vector3f(0.0, -2.5, -25.0);
-    lineStrip[9]-gpp::Vector3f(1.5, -2.5, -25.0);
-    lineStrip[10]-gpp::Vector3f(1.5, -4.0, -25.0);
-    lineStrip[11]-gpp::Vector3f (1.0, -4.0, -25.0);
-    lineStrip[12]-gpp::Vector3f(1.0, -4.5, -25.0);
-    lineStrip[13]-gpp::Vector3f(2.0, -4.5, -25.0);
-    lineStrip[14]-gpp::Vector3f(2.0, -2.5, -25.0);
-    lineStrip[15]-gpp::Vector3f(2.5, -1.5, -25.0);
-    lineStrip[16]-gpp::Vector3f(2.5, -1.0, -25.0);
-    lineStrip[17]-gpp::Vector3f(3.0, -1.0, -25.0);
-    lineStrip[18]-gpp::Vector3f(3.0, -0.5, -25.0);
-
-    lineStrip[19]-gpp::Vector3f(-1.6, -0.5, -25.0);
-    lineStrip[20]-gpp::Vector3f(-1.9, 0.2,-25.0); lineStrip[21]-gpp::Vector3f(-1.9,-0.5, -25.0)
+    
 
 	// glNewList(index, GL_COMPILE);
 	// Creates a new Display List
