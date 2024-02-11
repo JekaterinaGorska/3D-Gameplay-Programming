@@ -31,6 +31,11 @@ namespace gpp {
 		static Matrix3f rotateX(const float&);
 		static Matrix3f rotateY(const float&);
 		static Matrix3f rotateZ(const float&);
+		static Matrix3f translateX(const float&);
+		static Matrix3f translateY(const float&);
+		static Matrix3f translateZ(const float&);
+		static Matrix3f scale(const float&, const float&, const float&);
+
 
 		friend ostream& operator << (ostream&, const Matrix3f&);
 		friend istream& operator >> (istream&, Matrix3f&);

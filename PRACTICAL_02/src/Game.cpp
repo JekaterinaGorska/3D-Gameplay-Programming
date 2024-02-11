@@ -1,4 +1,5 @@
 #include <./include/Game.h>
+#include <cmath>
 
 bool updatable = false;
 
@@ -57,13 +58,10 @@ void Game::initialize()
 	glNewList(index, GL_COMPILE);
 	glBegin(GL_TRIANGLES);
 	{
-
 		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f(0.0, 2.0, -5.0);
-
-		glVertex3f(-2.0, -2.0, -5.0);
-
-		glVertex3f(2.0, -2.0, -5.0);
+		glVertex3f(0.0, 0.5, -7  .0);
+		glVertex3f(-0.5, -0.5, -7.0);
+		glVertex3f(0.5, -0.5, -7.0);
 	}
 
 	glEnd();
@@ -105,11 +103,11 @@ void Game::draw()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	cout << "Drawing Primatives " << endl;
+	cout << "Drawing Cat FAce " << endl;
 	glLoadIdentity();
 	glRotatef(rotationAngle, 0, 0, 1); // Rotates the camera on Z Axis
 
-	glCallList(1);
+	glCallList(index);
 
 	window.display();
 }

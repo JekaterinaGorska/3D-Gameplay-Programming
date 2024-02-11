@@ -122,7 +122,6 @@ Matrix3f Matrix3f::translateZ(const float& z) {
 	);
 }
 
-
 ostream& gpp::operator << (ostream& out, const Matrix3f& m) {
 	cout << "...[ Matrix ]..." << endl;
 	for (int i = 0; i < 3; i++) {
