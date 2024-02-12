@@ -169,9 +169,9 @@ int main()
 					print(triangle);
 					break;
 				case sf::Keyboard::S:
-					triangle[0] = gpp::Matrix3f::translateY(-0.1f) * triangle[0];
-					triangle[1] = gpp::Matrix3f::translateY(-0.1f) * triangle[1];
-					triangle[2] = gpp::Matrix3f::translateY(-0.1f) * triangle[2];
+					triangle[0] = gpp::Matrix3f::translateY(0.1f) * triangle[0];
+					triangle[1] = gpp::Matrix3f::translateY(0.1f) * triangle[1];
+					triangle[2] = gpp::Matrix3f::translateY(0.1f) * triangle[2];
 					print(triangle);
 					break;
 				case sf::Keyboard::A:
@@ -181,9 +181,9 @@ int main()
 					print(triangle);
 					break;
 				case sf::Keyboard::D:
-					triangle[0] = gpp::Matrix3f::translateY(-0.1f) * triangle[0];
-					triangle[1] = gpp::Matrix3f::translateY(-0.1f) * triangle[1];
-					triangle[2] = gpp::Matrix3f::translateY(-0.1f) * triangle[2];
+					triangle[0] = gpp::Matrix3f::translateY(0.1f) * triangle[0];
+					triangle[1] = gpp::Matrix3f::translateY(0.1f) * triangle[1];
+					triangle[2] = gpp::Matrix3f::translateY(0.1f) * triangle[2];
 					print(triangle);
 					break;
 				}
