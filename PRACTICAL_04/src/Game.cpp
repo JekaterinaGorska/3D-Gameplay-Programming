@@ -1,8 +1,11 @@
 #include <./include/Game.h>
-
+#include <cmath>
+#include <./include/Matrix3f.h>
+//#include "Game.h"
 Game::Game() : window(VideoMode(800, 600), "Vertex Array OpenGL Cube")
 {
-
+	 std::copy(std::begin(vertices), std::end(vertices), std::begin(vertices));
+    std::copy(std::begin(colors), std::end(colors), std::begin(colors));
 }
 
 Game::~Game() {}
@@ -78,33 +81,47 @@ float colors[] = {
 // Index to be drawn
 unsigned int vertex_index[] = { 0, 1, 2 };
 
-void Game::run()
-{
-
-	initialize();
-
-	Event event;
-
-	while (isRunning) {
-
-		cout << "Game running..." << endl;
-
-		while (window.pollEvent(event))
-		{
-			if (event.type == Event::Closed)
-			{
-				isRunning = false;
-			}
-		}
-		update();
-		render();
-	}
-
+void Game::run() {
+    initialize();
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+            else if (event.type == sf::Event::KeyPressed) {
+                switch (event.key.code) {
+                    case sf::Keyboard::Left:
+                        rotate(5.0f);
+                        break;
+                    case sf::Keyboard::Right:
+                        rotate(-5.0f);
+                        break;
+                    case sf::Keyboard::Up:
+                        translate(0.0f, 0.1f, 0.0f);
+                        break;
+                    case sf::Keyboard::Down:
+                        translate(0.0f, -0.1f, 0.0f);
+                        break;
+                    case sf::Keyboard::A:
+                        scale(1.1f, 1.1f, 1.1f);
+                        break;
+                    case sf::Keyboard::Z:
+                        scale(0.9f, 0.9f, 0.9f);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        update();
+        render();
+    }
 }
+
 
 void Game::initialize()
 {
-	isRunning = true;
+	//isRunning = true;
 
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glMatrixMode(GL_PROJECTION);
@@ -151,4 +168,53 @@ void Game::render()
 void Game::unload()
 {
 	cout << "Cleaning up" << endl;
+}
+void Game::print(const float vertices[], int size)
+{
+	 for (int i = 0; i < size; i += 3) {
+        std::cout << "Vertex " << i / 3 << ": (" << vertices[i] << ", " << vertices[i + 1] << ", " << vertices[i + 2] << ")" << std::endl;
+    }
+}
+void Game::rotateX(float angle)
+{
+	   Matrix3f rotationMatrix = Matrix3f::rotateX(angle);
+    for (int i = 0; i < 24; i += 3) {
+        Vector3f vertex(vertices[i], vertices[i + 1], vertices[i + 2]);
+        vertex = rotationMatrix * vertex;
+        vertices[i] = vertex.x;
+        vertices[i + 1] = vertex.y;
+        vertices[i + 2] = vertex.z;
+    }
+}
+
+void Game::rotateY(float angle)
+{
+	  Matrix3f rotationMatrix = Matrix3f::rotateY(angle);
+    for (int i = 0; i < 24; i += 3) {
+        Vector3f vertex(vertices[i], vertices[i + 1], vertices[i + 2]);
+        vertex = rotationMatrix * vertex;
+        vertices[i] = vertex.x;
+        vertices[i + 1] = vertex.y;
+        vertices[i + 2] = vertex.z;
+    }
+}
+
+void Game::rotateZ(float angle)
+{
+	   Matrix3f rotationMatrix = Matrix3f::rotateZ(angle);
+    for (int i = 0; i < 24; i += 3) {
+        Vector3f vertex(vertices[i], vertices[i + 1], vertices[i + 2]);
+        vertex = rotationMatrix * vertex;
+        vertices[i] = vertex.x;
+        vertices[i + 1] = vertex.y;
+        vertices[i + 2] = vertex.z;
+    }
+}
+
+void Game::translate(float dx, float dy, float dz)
+{
+}
+
+void Game::scale(float sx, float sy, float sz)
+{
 }
