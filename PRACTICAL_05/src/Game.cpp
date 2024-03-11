@@ -63,41 +63,41 @@ void Game::initialize()
 	vertex[2].coordinate[1] = 0.5f;
 	vertex[2].coordinate[2] = 0.0f;
 
-	//vertex[3].coordinate[0] = 0.5f; 
-	//vertex[3].coordinate[1] = 0.5f;  
-	//vertex[3].coordinate[2] = 0.0f;
+	vertex[3].coordinate[0] = 0.5f; 
+	vertex[3].coordinate[1] = 0.5f;  
+	vertex[3].coordinate[2] = 0.0f;
 
-	//vertex[4].coordinate[0] = 0.5f; 
-	//vertex[4].coordinate[1] = -0.5f;  
-	//vertex[4].coordinate[2] = 0.0f;
+	vertex[4].coordinate[0] = 0.5f; 
+	vertex[4].coordinate[1] = -0.5f;  
+	vertex[4].coordinate[2] = 0.0f;
 
-	//vertex[5].coordinate[0] = -0.5f; 
-	//vertex[5].coordinate[1] = -0.5f;  
-	//vertex[5].coordinate[2] = 0.0f;
+	vertex[5].coordinate[0] = -0.5f; 
+	vertex[5].coordinate[1] = -0.5f;  
+	vertex[5].coordinate[2] = 0.0f;
 
-	vertex[0].color[0] = 0.1f;
-	vertex[0].color[1] = 1.0f;
-	vertex[0].color[2] = 0.0f;
+	vertex[0].color[0] = -0.0001f;
+	vertex[0].color[1] = -0.0001f;
+	vertex[0].color[2] = -0.0001f;
 
 	vertex[1].color[0] = 0.2f;
 	vertex[1].color[1] = 1.0f;
 	vertex[1].color[2] = 0.0f;
 
-	vertex[2].color[0] = 0.3f;
-	vertex[2].color[1] = 1.0f;
-	vertex[2].color[2] = 0.0f;
+	vertex[2].color[0] = -0.0001f;
+	vertex[2].color[1] = -0.0001f;
+	vertex[2].color[2] = -0.0001f;
 
 	vertex[3].color[0] = 0.4f;
 	vertex[3].color[1] = 1.0f;
 	vertex[3].color[2] = 0.0f;
 
-	vertex[4].color[0] = 0.5f;
-	vertex[4].color[1] = 1.0f;
-	vertex[4].color[2] = 0.0f;
+	vertex[4].color[0] =-0.0001f;
+	vertex[4].color[1] = -0.0001f;
+	vertex[4].color[2] = -0.0001f;
 
-	vertex[5].color[0] = 0.6f;
-	vertex[5].color[1] = 1.0f;
-	vertex[5].color[2] = 0.0f;
+	vertex[5].color[0] = -0.0001f;
+	vertex[5].color[1] = -0.0001f;
+	vertex[5].color[2] = -0.0001f;
 
 
 	triangles[0] = 0;   triangles[1] = 1;   triangles[2] = 2;
