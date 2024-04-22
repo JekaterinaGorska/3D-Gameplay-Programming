@@ -323,25 +323,25 @@ void Game::run()
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			{
 				// Rotate the model to the left around the y-axis
-				model = rotate(model, 0.01f, glm::vec3(0, 1, 0)); // Rotate
+				model = rotate(model, 0.06f, glm::vec3(0, 1, 0)); // Rotate
 			}
 
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 			{
 				// Rotate the model to the right around the y-axis
-				model = rotate(model, -0.01f, glm::vec3(0, 1, 0)); // Rotate
+				model = rotate(model, -0.06f, glm::vec3(0, 1, 0)); // Rotate
 			}
 
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 			{
 				// Rotate the model upwards around the x-axis
-				model = rotate(model, -0.01f, glm::vec3(1, 0, 0)); // Rotate
+				model = rotate(model, -0.06f, glm::vec3(1, 0, 0)); // Rotate
 			}
 
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 			{
 				// Rotate the model downwards around the x-axis
-				model = rotate(model, 0.01f, glm::vec3(1, 0, 0)); // Rotate
+				model = rotate(model, 0.06f, glm::vec3(1, 0, 0)); // Rotate
 			}
 		}
 
