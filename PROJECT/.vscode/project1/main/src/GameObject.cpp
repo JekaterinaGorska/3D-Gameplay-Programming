@@ -1,4 +1,4 @@
-//Jekaterina Gorska
+
 #include <./include/GameObject.h>
 
 using namespace gpp; // GPP namespace
@@ -48,3 +48,21 @@ string GameObject::enumToString()
         return "Unknown GameObject";
     }
 }
+
+// void gpp::GameObject::setColor(TYPE type)
+// {
+//     switch (type)
+//     {
+//     case TYPE::RED:
+//         memcpy(this->colour, allRed, sizeof(this->colour));
+//         break;
+//     case TYPE::BLUE:
+//         memcpy(this->colour, allBlue, sizeof(this->colour));
+//         break;
+//     case TYPE::GREEN:
+//         memcpy(this->colour, allGreen, sizeof(this->colour));
+//         break;
+//     default:
+//         break;
+//     }
+// }

@@ -1,11 +1,16 @@
-//Jekaterina Gorska
-#include <./include/Debug.h>	 
-#include <./include/Cube.h>		 
-#include <./include/Game.h>		
-#include <./include/stb_image.h> 
+/**
+ * @file Game.cpp
+ * @brief This file contains the implementation of the Game class.
+ */
 
-#define STB_IMAGE_IMPLEMENTATION 
-#include <./include/stb_image.h> 
+#include <./include/Debug.h>	 // Include Debug header file
+#include <./include/Cube.h>		 // Include Cube header file
+#include <./include/Game.h>		 // Include Game header file
+#include <./include/stb_image.h> // Include single file header for loading images
+
+/* STB_IMAGE_IMPLEMENTATION should be defined only once */
+#define STB_IMAGE_IMPLEMENTATION // Define STB_IMAGE_IMPLEMENTATION only once
+#include <./include/stb_image.h> // Include single file header for loading images
 
 template <typename T>
 string toString(T number)
@@ -15,20 +20,20 @@ string toString(T number)
 	return oss.str();
 }
 
-GLuint vsid, 
-	fsid,	 
-	progID,	 
-	vbo,	
-	vib,	 
-	to[1];	 
+GLuint vsid, // Vertex Shader ID
+	fsid,	 // Fragment Shader ID
+	progID,	 // Program ID
+	vbo,	 // Vertex Buffer ID
+	vib,	 // Vertex Index Buffer
+	to[1];	 // Texture ID
 
-GLint positionID, 
-	colorID,	  
-	textureID,	  
-	uvID,		  
-	mvpID;		 
+GLint positionID, // Position ID
+	colorID,	  // Color ID
+	textureID,	  // Texture ID
+	uvID,		  // UV ID
+	mvpID;		  // Model View Projection ID
 
-GLenum error; 
+GLenum error; // OpenGL Error Code
 
 // Filename for texture
 const string filename = "./assets/textures/grid.tga";
@@ -41,18 +46,20 @@ const string filename = "./assets/textures/grid.tga";
 // const string filename = "./assets/textures/texture_2.tga";
 // const string filename = "../assets/textures/uvtemplate.tga";
 
-int width;						 
-int height;						 
-int comp_count;					 
-const int colour_components = 4; 
+int width;						 // width of texture
+int height;						 // height of texture
+int comp_count;					 // Component of texture
+const int colour_components = 4; // 4 = RGBA
 
+// Texture image data
 unsigned char *img_data;
 
+// View Projection Matrices
 mat4 projection, view;
 
-Font font; 
+Font font; // Game font
 
-float x_offset, y_offset, z_offset; 
+float x_offset, y_offset, z_offset; // offset on screen (Vertex Shader)
 
 Game::Game(sf::ContextSettings settings) : window(VideoMode(800, 600),
 												  "Project I StarterKit 3D Game Scene",
@@ -65,13 +72,23 @@ Game::Game(sf::ContextSettings settings) : window(VideoMode(800, 600),
 Game::~Game()
 {
 	DEBUG_MSG("\nGame::~Game() Destructor\n");
-
-}
+// 	delete player;
+// 	for (auto npc : npcs) {
+// 		delete npc;
+// 	}
+ }
 
 void Game::initialise()
 {
 
 	DEBUG_MSG("\n******** Initialisation Procedure STARTS ********\n");
+	// moveLeft = new MoveLeftCommand();
+	// moveRight = new MoveRightCommand();
+	// InputManager::getInstance()->keyCommands(Keyboard::A, moveLeft);
+	// InputManager::getInstance()->keyCommands(Keyboard::D, moveRight);
+
+	//buttonMap[4] = moveLeft; //LB
+	//buttonMap[5] = moveRight; //RB
 
 	isRunning = true;
 	GLint isCompiled = 0;
@@ -105,13 +122,22 @@ void Game::initialise()
 
 	DEBUG_MSG("\n******** Init GameObjects ENDS ********\n");
 
-
+	// Copy UV coordinates to all faces (initially only one face is defined in Cube.h)
+	// This loop iterates over each face (except the first one) and copies the UV coordinates
+	// from the first face to the UV array for that face.
 	for (int i = 1; i < 6; i++)
 	{
-	
-		int uv_start_position = i * 4 * 2; 
-		memcpy(&uvs[uv_start_position], &uvs[0], 2 * 4 * sizeof(GLfloat)); 
+		// Calculate the starting position of UV coordinates for the current face in the UV array
+		int uv_start_position = i * 4 * 2; // Each face has 4 vertices, each vertex has 2 UV coordinates
+
+		// Copy UV coordinates from the first face to the current face
+		memcpy(&uvs[uv_start_position], &uvs[0], 2 * 4 * sizeof(GLfloat)); // Each vertex has 2 UV coordinates,
+																		   // and there are 4 vertices per face
 	}
+
+	 //	for (int i = 1; i < 6; i++) {
+		//	memcpy(&uvs[i * 4 * 2], &uvs[0], 2 * 4 * sizeof(GLfloat));
+		//}
 
 	// Output GPU information to the debug console
 	DEBUG_MSG("\n******** GPU information STARTS ********\n");
@@ -126,11 +152,10 @@ void Game::initialise()
 	DEBUG_MSG("\n******** GPU information ENDS ********\n");
 
 	// Vertex Buffer Object
-	glGenBuffers(1, &vbo); 
+	glGenBuffers(1, &vbo); // Generate Vertex Buffer
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
 	DEBUG_MSG("\n******** Model information STARTS ********\n");
-	
 	// Vertices (3) x,y,z , Colors (4) RGBA, UV/ST (2)
 	int countVERTICES = player->getVertexCount();
 	int countCOLORS = player->getColorCount();
@@ -154,6 +179,8 @@ void Game::initialise()
 	// Indices to be drawn
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 3 * INDICES * sizeof(GLuint), indices, GL_STATIC_DRAW);
 
+	// NOTE: uniforms values must be used within Shader so that they
+	// can be retreived
 	// Define and compile Vertex Shader
 	const char *vs_src =
 		"#version 130\n\n"
@@ -330,12 +357,14 @@ void Game::initialise()
 
 	// Set up Camera Matrix
 	view = lookAt(
-		vec3(0.0f, 4.0f, 10.0f), 
-		vec3(0.0f, 0.0f, 0.0f),	
-		vec3(0.0f, 1.0f, 0.0f)	 
+		vec3(0.0f, 4.0f, 10.0f), // Camera (x,y,z), in World Space
+		vec3(0.0f, 0.0f, 0.0f),	 // Camera looking at origin
+		vec3(0.0f, 1.0f, 0.0f)	 // 0.0f, 1.0f, 0.0f Look Down and 0.0f, -1.0f, 0.0f Look Up
 	);
 
 	DEBUG_MSG("\n******** MVP ENDS ********\n");
+
+	// Enable Depth Test for accurate rendering
 	DEBUG_MSG("\n******** CULLING ENABLE STARTS ********\n");
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
@@ -350,6 +379,7 @@ void Game::initialise()
 	}
 	DEBUG_MSG("\n******** OpenGL Error Check ENDS ********\n");
 
+	// Load Font
 	font.loadFromFile("./assets/fonts/BBrick.ttf");
 
 	DEBUG_MSG("\n******** Initialisation Procedure ENDS ********\n");
@@ -364,6 +394,8 @@ void Game::update()
 	DEBUG_MSG("Updating... MVP");
 #endif
 
+
+	// Update the Model View Projection matrix by combining the projection, view, and model matrices
 	if (player->isAlive())
 	{
 
@@ -379,7 +411,7 @@ void Game::update()
 				if (player->checkCollision(cube))
 				{
 					cout << "Colliding" << endl;
-					reinitialise();
+					player->kill();
 				}
 			}
 		}
@@ -398,44 +430,59 @@ void Game::update()
 void Game::run()
 {
 
+	// Initialize the game
 	initialise();
+
+	// Create an event object for handling window events
 	Event event;
 	Clock clock;
-	
+	// Variables to track FPS
 	int frameCount = 0;
 	float fpsUpdateTime = 0.0f;
-	
 	// Main game loop
 	while (isRunning)
 	{
 		deltaTime = clock.restart();
+
+		// Increment frame count
 		frameCount++;
+
+		// Update FPS timer
 		fpsUpdateTime += deltaTime.asSeconds();
+
+		// Check if it's time to update FPS
 		if (fpsUpdateTime >= 1.0f)
 		{
-			
+			// Calculate FPS
 			float fps = static_cast<float>(frameCount) / fpsUpdateTime;
+
+			// Output FPS to console or perform any desired action
 			std::cout << "FPS: " << fps << std::endl;
+
+			// Reset frame count and FPS update time
 			frameCount = 0;
 			fpsUpdateTime = 0.0f;
 		}
-	
+		// Check if the game is running in debug mode and print debug message
 #if (DEBUG >= 2)
 		DEBUG_MSG("Game running...");
 #endif
 
-	
+		// Handle events such as window close or keyboard input
 		while (window.pollEvent(event))
 		{
-			
+			// Check if the window is being closed
 			if (event.type == Event::Closed)
 			{
+				// Set the flag to stop the game loop
 				isRunning = false;
 			}
 		
 		}
-		
+		// Update game state
 		update();
+
+		// Render the game scene
 		render();
 	}
 
@@ -490,11 +537,14 @@ void Game::render()
 	DEBUG_MSG("Render Loop...");
 #endif
 
+	// Clear the color buffer and depth buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Save current OpenGL render states
 	// https://www.sfml-dev.org/documentation/2.0/classsf_1_1RenderTarget.php#a8d1998464ccc54e789aaf990242b47f7
 	window.pushGLStates();
+
+	// Find mouse position using sf::Mouse
 	int x = Mouse::getPosition(window).x;
 	int y = Mouse::getPosition(window).y;
 
@@ -592,13 +642,13 @@ void Game::renderObject(GameObject* obj)
 	switch (obj->getType())
 	{
 	case TYPE::RED:
-		glBufferSubData(GL_ARRAY_BUFFER, 3 * VERTICES * sizeof(GLfloat), 4 * COLOURS * sizeof(GLfloat), red);
+		glBufferSubData(GL_ARRAY_BUFFER, 3 * VERTICES * sizeof(GLfloat), 4 * COLOURS * sizeof(GLfloat), colours);
 		break;
 	case TYPE::BLUE:
-		glBufferSubData(GL_ARRAY_BUFFER, 3 * VERTICES * sizeof(GLfloat), 4 * COLOURS * sizeof(GLfloat), blue);
+		glBufferSubData(GL_ARRAY_BUFFER, 3 * VERTICES * sizeof(GLfloat), 4 * COLOURS * sizeof(GLfloat), colours);
 		break;
 	case TYPE::GREEN:
-		glBufferSubData(GL_ARRAY_BUFFER, 3 * VERTICES * sizeof(GLfloat), 4 * COLOURS * sizeof(GLfloat), green);
+		glBufferSubData(GL_ARRAY_BUFFER, 3 * VERTICES * sizeof(GLfloat), 4 * COLOURS * sizeof(GLfloat), colours);
 		break;
 	default:
 		glBufferSubData(GL_ARRAY_BUFFER, 3 * VERTICES * sizeof(GLfloat), 4 * COLOURS * sizeof(GLfloat), colours);
@@ -608,6 +658,7 @@ void Game::renderObject(GameObject* obj)
 	glBufferSubData(GL_ARRAY_BUFFER, ((3 * VERTICES) + (4 * COLOURS)) * sizeof(GLfloat), 2 * UVS * sizeof(GLfloat), uvs);
 
 	// Set the model-view-projection matrix
+
 	obj->setMVPMatrix(projection * view * obj->getModelMatrix());
 
 	// Send transformation to shader mvp uniform [0][0] is start of array
@@ -635,7 +686,7 @@ void Game::renderObject(GameObject* obj)
 void Game::reinitialise()
 {
 	player->setPosition(vec3(0.0f, 0.0f, 4.0f));
-
+	player->revive();
 
 	for (auto& cube : npcs)
 	{
@@ -652,3 +703,27 @@ void Game::restart()
 	reinitialise();
 }
 
+char* Game::readFile(std::string filename)
+{
+	std::ifstream file(filename, std::ios::in | std::ios::binary);
+	if (!file.is_open()) {
+		throw std::runtime_error("Failed to open file: " + std::string(filename));
+	}
+
+	// Get file length
+	file.seekg(0, std::ios::end);
+	size_t length = file.tellg();
+	file.seekg(0, std::ios::beg);
+
+	// Allocate memory for the buffer
+	char* buffer = new char[length + 1];
+
+	// Read file content into the buffer
+	file.read(buffer, length);
+	buffer[length] = '\0'; // Null-terminate the buffer
+
+	// Close the file
+	file.close();
+
+	return buffer;
+}

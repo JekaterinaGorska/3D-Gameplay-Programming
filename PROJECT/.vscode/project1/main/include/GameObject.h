@@ -1,4 +1,3 @@
-//Jekaterina Gorska
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
 
@@ -67,6 +66,7 @@ namespace gpp
 		virtual GLfloat* getIndex() = 0;
 		virtual int getIndexCount() = 0;
 		virtual std::string enumToString();
+		//virtual void setColor(TYPE type);
 		virtual void update(double dt) = 0;
 		virtual void moveRight() = 0;
 		virtual void moveLeft() = 0;

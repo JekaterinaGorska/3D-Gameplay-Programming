@@ -1,4 +1,4 @@
-//Jekaterina Gorska
+
 #ifndef GAME_H // If the macro GAME_H is not defined
 #define GAME_H // Define the macro GAME_H to prevent multiple inclusions of this header file
 
@@ -38,23 +38,30 @@ class Game
 {
 public:
     Game(sf::ContextSettings settings); // Constructor with SFML context settings
-    ~Game(); 
-    void run(); 
+    ~Game(); // Destructor
+    void run(); // Method to run the game
 
 private:
-    RenderWindow window;         
-    Clock clock;                 
-    Time time;                   
-    bool isRunning = false;      
-    void update(); 
-    void render();
-    void unload(); 
+    RenderWindow window;         // SFML RenderWindow for rendering graphics
+    Clock clock;                 // SFML Clock for timing
+    Time time;                   // SFML Time for time-related operations
+    bool isRunning = false;      // Flag to track game state
+    void initialise(); // Method to initialize the game
+    void update(); // Method to update the game state
+    void render(); // Method to render the game
+    void unload(); // Method to clean up resources
+   /* void render3D();*/
     void renderObject(GameObject* obj);
     void reinitialise();
     void restart();
     vector<NPC*> npcs;
     Player* player;
     Time deltaTime;
+
+
+    char* readFile(std::string filename);
+
+
 };
 
 #endif // GAME_H
