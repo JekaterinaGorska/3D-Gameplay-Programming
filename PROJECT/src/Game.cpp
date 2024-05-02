@@ -65,7 +65,6 @@ Game::Game(sf::ContextSettings settings) : window(VideoMode(800, 600),
 Game::~Game()
 {
 	DEBUG_MSG("\nGame::~Game() Destructor\n");
-
 }
 
 void Game::initialise()
@@ -398,7 +397,7 @@ void Game::update()
 void Game::run()
 {
 
-	initialise();
+	reinitialise();
 	Event event;
 	Clock clock;
 	

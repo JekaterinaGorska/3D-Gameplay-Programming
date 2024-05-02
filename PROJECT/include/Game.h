@@ -45,7 +45,8 @@ private:
     RenderWindow window;         
     Clock clock;                 
     Time time;                   
-    bool isRunning = false;      
+    bool isRunning = false;     
+    void initialise(); 
     void update(); 
     void render();
     void unload(); 
