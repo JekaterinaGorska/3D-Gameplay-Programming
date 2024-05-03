@@ -85,7 +85,7 @@ void Game::initialise()
 
 	DEBUG_MSG("\n******** Init GameObjects STARTS ********\n");
 
-	for (int i = 0; i < 500;i++)
+	for (int i = 0; i < 50;i++)
 	{
 		npcs.push_back(new NPC(TYPE::RED, i * 5));
 		npcs.push_back(new NPC(TYPE::GREEN, i * 5));
