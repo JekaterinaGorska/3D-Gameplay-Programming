@@ -29,23 +29,23 @@ bool Player::checkCollision(GameObject* obj)
     vec3 pos1 = obj->getPosition();
     vec3 pos2 = this->getPosition();
 
-    // Calculate the distances between the centers of the two cubes
+
     float distX = abs(pos1.x - pos2.x);
     float distY = abs(pos1.y - pos2.y);
     float distZ = abs(pos1.z - pos2.z);
 
-    // Calculate the minimum distance needed for collision
-    float minDist = 2.0f; // Sum of the lengths of the sides of two cubes
+   
+    float minDist = 2.0f; 
 
-    // Check if the cubes are colliding
+    
     if (distX < minDist && distY < minDist && distZ < minDist) {
         if (this->getType() != obj->getType())
         {
-            return true; // Collision detected
+            return true; 
         }
     }
 
-    return false; // No collision detected
+    return false; 
 }
 
 vec3 Player::getPosition()
@@ -110,7 +110,7 @@ void Player::moveRight()
 {
     if (alive)
     {
-        //this->setModelMatrix(translate(this->getModelMatrix(), glm::vec3(0.002f, 0.0f, 0.0f)));
+       
         this->setModelMatrix(translate(this->getModelMatrix(), glm::vec3(speed *dt, 0.0f, 0.0f)));
         this->setPosition(this->getPosition() + vec3(speed *dt, 0.0f, 0.0f));
         std::cout << "moving right" << std::endl;
@@ -122,7 +122,7 @@ void Player::moveLeft()
 {
     if (alive)
     {
-        //this->setModelMatrix(translate(this->getModelMatrix(), glm::vec3(-0.002f, 0.0f, 0.0f)));
+        
         this->setModelMatrix(translate(this->getModelMatrix(), glm::vec3(-speed *dt, 0.0f, 0.0f)));
         this->setPosition(this->getPosition() + vec3(-speed *dt, 0.0f, 0.0f));
         std::cout << "Moving left" << std::endl;
@@ -132,12 +132,12 @@ void Player::moveLeft()
 
 void Player::handleKeyInputs()
 {
-    // Check if the A key is pressed
+   
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
         moveLeft(); 
     }
 
-    // Check if the D key is pressed
+   
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
         moveRight(); 
     }

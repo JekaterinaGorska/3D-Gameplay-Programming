@@ -87,6 +87,7 @@ void Game::initialise()
 
 	for (int i = 0; i < 50;i++)
 	{
+		//npcs are a vector type
 		npcs.push_back(new NPC(TYPE::RED, i * 5));
 		npcs.push_back(new NPC(TYPE::GREEN, i * 5));
 		npcs.push_back(new NPC(TYPE::BLUE, i * 5));
