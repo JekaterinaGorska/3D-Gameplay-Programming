@@ -397,7 +397,7 @@ void Game::update()
 void Game::run()
 {
 
-	reinitialise();
+	initialise();
 	Event event;
 	Clock clock;
 	
